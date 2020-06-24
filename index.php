@@ -5,7 +5,7 @@ require('UserInfo.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>UserInfo Demo</title>
+	<title>Give My Info</title>
 	<style>
 table {
 	margin-top: 20px;
