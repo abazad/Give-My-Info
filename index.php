@@ -68,15 +68,16 @@ require('UserInfo.php');
 <body>
 <center><h2>Give My Info</h2></center>
 	<hr>
-	<h4>Public IP</h4>
+	<h3>Public IP</h3>
 	<?= UserInfo::get_ip();?>
-	<h4>Local IP</h4>
+	<h3>Local IP (IPv4 and IPv6)</h3>
 	<div id="list"></div>
-	<h4>Device</h4>
+	<h3>Device</h3>
 	<?= UserInfo::get_device();?>
-	<h4>OS</h4>
+	<h3>OS</h3>
 	<?= UserInfo::get_os();?>
-	<h4>Browser</h4> 
+	<h3>Browser</h3> 
     <?= UserInfo::get_browser();?>
+    <hr>
 </body>
 </html>
