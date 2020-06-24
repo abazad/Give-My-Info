@@ -83,7 +83,7 @@ h2{font-family: sans-serif,'Helvetica';}
         } 
 </script>  
 <body>
-<center><h2>UserInfo</h2></center>
+<center><h2>Give My Info</h2></center>
 
 
 	<table>
@@ -101,7 +101,7 @@ h2{font-family: sans-serif,'Helvetica';}
 		</tr>
 	</table>
 	<hr>
-	<h3>Local IP</h3> 
+	<h4>Local IP</h4> 
     <div id="list"></div>  
 </body>
 </html>
