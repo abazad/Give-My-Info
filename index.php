@@ -89,19 +89,19 @@ h2{font-family: sans-serif,'Helvetica';}
 	<table>
 		<tr>
 			<th>Public IP</th>
-			<th>Local IP</th>
 			<th>Device</th>
 			<th>OS</th>
 			<th>Browser</th>
 		</tr>
 		<tr>
 			<td><?= UserInfo::get_ip();?></td>
-			<div id="list"></div>  
 			<td><?= UserInfo::get_device();?></td>
 			<td><?= UserInfo::get_os();?></td>
 			<td><?= UserInfo::get_browser();?></td>
 		</tr>
 	</table>
-	<hr> 
+	<hr>
+	<h3>Local IP</h3>> 
+    <div id="list"></div>  
 </body>
 </html>
