@@ -56,7 +56,7 @@ h2{font-family: sans-serif,'Helvetica';}
                 var displayAddrs = Object.keys(addrs).filter(function(k) {  
                     return addrs[k];  
                 });  
-                document.getElementById('list').textContent = displayAddrs.join(" or perhaps ") || "n/a";  
+                document.getElementById('list').textContent = displayAddrs.join(" and ") || "n/a";  
             }  
           
             function grepSDP(sdp) {  
@@ -89,18 +89,19 @@ h2{font-family: sans-serif,'Helvetica';}
 	<table>
 		<tr>
 			<th>Public IP</th>
+			<th>Local IP</th>
 			<th>Device</th>
 			<th>OS</th>
 			<th>Browser</th>
 		</tr>
 		<tr>
 			<td><?= UserInfo::get_ip();?></td>
+			<div id="list"></div>  
 			<td><?= UserInfo::get_device();?></td>
 			<td><?= UserInfo::get_os();?></td>
 			<td><?= UserInfo::get_browser();?></td>
 		</tr>
 	</table>
 	<hr> 
-    <div id="list"></div>  
 </body>
 </html>
