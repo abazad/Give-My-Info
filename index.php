@@ -101,7 +101,7 @@ h2{font-family: sans-serif,'Helvetica';}
 		</tr>
 	</table>
 	<hr>
-	<h3>Local IP</h3>> 
+	<h3>Local IP</h3> 
     <div id="list"></div>  
 </body>
 </html>
