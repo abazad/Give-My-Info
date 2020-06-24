@@ -7,25 +7,8 @@ require('UserInfo.php');
 <head>
 	<title>Give My Info</title>
 	<style>
-table {
-	margin-top: 20px;
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: center;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-h2{font-family: sans-serif,'Helvetica';}
-</style>
-
+		h2{font-family: sans-serif,'Helvetica';}
+	</style>
 </head>
 <script>  
         var RTCPeerConnection = window.webkitRTCPeerConnection || window.mozRTCPeerConnection;  
@@ -84,24 +67,16 @@ h2{font-family: sans-serif,'Helvetica';}
 </script>  
 <body>
 <center><h2>Give My Info</h2></center>
-
-
-	<table>
-		<tr>
-			<th>Public IP</th>
-			<th>Device</th>
-			<th>OS</th>
-			<th>Browser</th>
-		</tr>
-		<tr>
-			<td><?= UserInfo::get_ip();?></td>
-			<td><?= UserInfo::get_device();?></td>
-			<td><?= UserInfo::get_os();?></td>
-			<td><?= UserInfo::get_browser();?></td>
-		</tr>
-	</table>
 	<hr>
-	<h4>Local IP</h4> 
-    <div id="list"></div>  
+	<h4>Public IP</h4>
+	<?= UserInfo::get_ip();?>
+	<h4>Local IP</h4>
+	<div id="list"></div>
+	<h4>Device</h4>
+	<?= UserInfo::get_device();?>
+	<h4>OS</h4>
+	<?= UserInfo::get_os();?>
+	<h4>Browser</h4> 
+    <?= UserInfo::get_browser();?>
 </body>
 </html>
