@@ -1,7 +1,3 @@
-<?php 
-require('UserInfo.php');
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,20 +60,64 @@ require('UserInfo.php');
             document.getElementById('list').innerHTML = "<code>ifconfig| grep inet | grep -v inet6 | cut -d\" \" -f2 | tail -n1</code>";  
             document.getElementById('list').nextSibling.textContent = "In Chrome and Firefox your IP should display automatically, by the power of WebRTCskull.";  
         } 
-</script>  
+</script> 
 <body>
-<center><h2>Give My Info</h2></center>
-	<hr>
-	<h3>Public IP</h3>
-	<?= UserInfo::get_ip();?>
-	<h3>Local IP (IPv4 and IPv6)</h3>
-	<div id="list"></div>
-	<h3>Device</h3>
-	<?= UserInfo::get_device();?>
-	<h3>OS</h3>
-	<?= UserInfo::get_os();?>
-	<h3>Browser</h3> 
-    <?= UserInfo::get_browser();?>
-    <hr>
+<?php
+require_once 'vendor/autoload.php';
+
+use DeviceDetector\DeviceDetector;
+use DeviceDetector\Parser\Device\DeviceParserAbstract;
+
+DeviceParserAbstract::setVersionTruncation(DeviceParserAbstract::VERSION_TRUNCATION_NONE);
+
+$userAgent = $_SERVER['HTTP_USER_AGENT']; 
+$dd = new DeviceDetector($userAgent);
+
+$dd->parse();
+
+function get_ip() {
+	$mainIp = '';
+	if (getenv('HTTP_CLIENT_IP'))
+		$mainIp = getenv('HTTP_CLIENT_IP');
+	else if(getenv('HTTP_X_FORWARDED_FOR'))
+		$mainIp = getenv('HTTP_X_FORWARDED_FOR');
+	else if(getenv('HTTP_X_FORWARDED'))
+		$mainIp = getenv('HTTP_X_FORWARDED');
+	else if(getenv('HTTP_FORWARDED_FOR'))
+		$mainIp = getenv('HTTP_FORWARDED_FOR');
+	else if(getenv('HTTP_FORWARDED'))
+		$mainIp = getenv('HTTP_FORWARDED');
+	else if(getenv('REMOTE_ADDR'))
+		$mainIp = getenv('REMOTE_ADDR');
+	else
+		$mainIp = 'UNKNOWN';
+	return $mainIp;
+}
+
+if ($dd->isBot()) {
+  $botInfo = $dd->getBot();
+} 
+else {
+  $clientInfo = $dd->getClient(); 
+  $osInfo = $dd->getOs();
+  $device = $dd->getDeviceName();
+  $brand = $dd->getBrandName();
+  $model = $dd->getModel();
+  $publicIP = get_ip();
+}
+	echo "<center><h2>Give My Info</h2></center>";
+	echo "<hr>";
+	echo "<h3>Public IP</h3>";
+	echo $publicIP;
+	echo "<h3>Local IP (IPv4 and IPv6)</h3>";
+	echo "<div id='list'></div>";
+	echo "<h3>Device</h3>";
+	echo $device." ".$brand." ".$model;
+	echo "<h3>OS</h3>";
+	echo $osInfo[name]." ".$osInfo[platform];
+	echo "<h3>Browser</h3>"; 
+    echo $clientInfo[name]." ".$clientInfo[version];
+    echo "<hr>";
+?>
 </body>
 </html>
