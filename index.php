@@ -108,7 +108,7 @@ else {
 	echo "<center><h2>Give My Info</h2></center>";
 	echo "<hr>";
 	echo "<h3>Public IP</h3>";
-	echo $publicIP.' <a href="https://ipinfo.io/$publicIP">More info on IP</a> ';
+	echo $publicIP.' <a href="https://ipinfo.io/'.$publicIP.'">More info on IP</a> ';
 	echo "<h3>Local IP (IPv4 and IPv6)</h3>";
 	echo "<div id='list'></div>";
 	echo "<h3>Device</h3>";
